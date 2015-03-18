@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.youngball.Gather.domain">
+	<class name="Page" table="pages">
+		<id name="id" column="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property name="title" column="title" type="string" length="200" />
+		<property name="description" column="description" type="string" length="200" />
+		
+		<!-- 映射从Page到Survey之间多对一关联关系 -->
+		<many-to-one name="survey" class="Survey" column="surveyid" />
+		
+		<!-- 映射从Page到Question之间一对多关联关系 -->
+		<set name="questions" inverse="true">
+			<key column="pageid" />
+			<one-to-many class="Question"/>
+		</set>
+		
+	</class>	
+</hibernate-mapping>

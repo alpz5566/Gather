@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.youngball.Gather.domain.User" table="users">
+		<id name="id" column="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property name="email" column="email" type="string" length="50" />
+		<property name="password" column="password" type="string" length="50" />
+		<property name="nickName" column="nickname" type="string" length="50" />
+		<property name="regDate" column="regdate" type="timestamp" update="false"/>
+	</class>	
+</hibernate-mapping>    
