@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.youngball.Gather.domain">
+	<class name="Question" table="questions">
+		<id name="id" column="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property name="questionType" column="questiontype" type="integer" />
+		<property name="title" column="title" type="string" length="200" />
+		<property name="options" column="options" type="string" length="200"/>
+		<property name="other" column="other" type="boolean"/>
+		<property name="otherStyle" column="otherstyle" type="integer" />
+		<property name="otherSelectOptions" column="otherselectoptions" type="string" length="200"/>
+		<property name="matrixRowTitles" column="matrixrowtitles" type="string" length="200"/>
+		<property name="matrixColTitles" column="matrixcoltitles" type="string" length="200"/>
+		<property name="matrixSelectOptions" column="matrixselectoptions" type="string" length="200"/>
+		<!-- 映射从Question到Page之间多对一关联关系 -->
+		<many-to-one name="page" class="Page" column="pageid" />
+	</class>	
+</hibernate-mapping>    
