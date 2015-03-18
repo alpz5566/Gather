@@ -9,7 +9,7 @@
 		</id>
 		<property name="email" column="email" type="string" length="50" />
 		<property name="password" column="password" type="string" length="50" />
-		<property name="nickName" column="nickname" type="string" length="50" />
+		<property name="nickname" column="nickname" type="string" length="50" />
 		<property name="regDate" column="regdate" type="timestamp" update="false"/>
 	</class>	
 </hibernate-mapping>    
