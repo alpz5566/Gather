@@ -17,7 +17,7 @@ import com.youngball.Gather.dao.BaseDao;
  * @param <T>
  */
 @SuppressWarnings("unchecked")
-public class BaseDaoImpl<T> implements BaseDao<T> {
+public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 
 	@Resource
 	private SessionFactory sf;
