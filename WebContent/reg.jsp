@@ -40,8 +40,8 @@
 			<tr>
 				<td class="tdFormLabel">昵称:</td>
 				<td class="tdFormControl">
-					<s:textfield name="nickName" cssClass="text" />
-					<font class="fonterror"><s:fielderror><s:param>nickName</s:param></s:fielderror></font>
+					<s:textfield name="Nickname" cssClass="text" />
+					<font class="fonterror"><s:fielderror><s:param>Nickname</s:param></s:fielderror></font>
 				</td>
 			</tr>
 			<tr>

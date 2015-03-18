@@ -2,6 +2,7 @@ package com.youngball.Gather.action;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -41,6 +42,7 @@ public class RegAction extends BaseAction<User> {
 	 * 到达注册页面
 	 * @return
 	 */
+	@SkipValidation
 	public String toRegPage(){
 		return "regPage";
 	}
@@ -60,7 +62,7 @@ public class RegAction extends BaseAction<User> {
 			addFieldError("email", "email是必填项目");
 		}
 		if(!ValidateUtil.isValid(model.getNickname())){
-			addFieldError("nickname", "nickname是必填项目");
+			addFieldError("Nickname", "昵称是必填项目");
 		}
 		if(!ValidateUtil.isValid(model.getPassword())){
 			addFieldError("password", "密码是必填项目");
