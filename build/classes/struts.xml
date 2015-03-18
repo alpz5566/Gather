@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<!-- 简单主题 -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+	
+	<package name="surveyParkPkg" namespace="/" extends="struts-default">
+		<!-- regAcion -->
+		<action name="RegAction_*" class="regAction" method="{1}">
+			<result name="regPage">/reg.jsp</result>
+			<result name="success">/index.jsp</result>
+			<result name="input">/reg.jsp</result>
+		</action>
+		
+		<!-- loginAction -->
+		<action name="LoginAction_*" class="loginAction" method="{1}">
+			<result name="loginPage">/index.jsp</result>
+			<result name="success">/index.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>
+		
+	</package>
+</struts>
