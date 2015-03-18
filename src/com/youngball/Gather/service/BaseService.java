@@ -3,7 +3,7 @@ package com.youngball.Gather.service;
 import java.util.List;
 
 public interface BaseService<T> {
-	//写操作
+		//写操作
 		public void saveEntity(T t);
 		public void updateEntity(T t);
 		public void saveOrUpdateEntity(T t);
@@ -15,4 +15,5 @@ public interface BaseService<T> {
 		public T getEntity(Integer id);
 		public T loadEntity(Integer id);
 		public List<T> findEntityByHQL(String hql,Object...objects);
+
 }

@@ -12,7 +12,7 @@
 	<package name="surveyParkPkg" namespace="/" extends="struts-default">
 		<!-- regAcion -->
 		<action name="RegAction_*" class="regAction" method="{1}">
-			<result name="regPage">/reg.jsp</result>
+			<result name="regPage">/reg.jsp</result>  
 			<result name="success">/index.jsp</result>
 			<result name="input">/reg.jsp</result>
 		</action>
