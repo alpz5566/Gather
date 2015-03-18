@@ -25,9 +25,9 @@ public class TestUserService {
 	public void insertUser(){
 		UserService us = (UserService)ac.getBean("userService");
 		User u  = new User();
-		u.setEmail("123@qq.com");
-		u.setPassword("12121");
-		u.setNickname("lpz");
+		u.setEmail("321@qq.com");
+		u.setPassword("544");
+		u.setNickname("liao");
 		us.saveEntity(u);
 	}
 	
