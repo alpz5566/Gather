@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import com.youngball.Gather.domain.User;
 import com.youngball.Gather.service.UserService;
+import com.youngball.Gather.util.DataUtil;
 import com.youngball.Gather.util.ValidateUtil;
 
 @Controller
@@ -52,6 +53,7 @@ public class RegAction extends BaseAction<User> {
 	 * @return
 	 */
 	public String doReg(){
+		model.setPassword(DataUtil.md5(model.getPassword()));
 		userService.saveEntity(model);
 		return SUCCESS;
 	}
