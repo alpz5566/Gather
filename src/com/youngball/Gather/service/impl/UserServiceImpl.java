@@ -29,11 +29,16 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		super.setDao(dao);
 	}
 
-	@Override
 	public boolean isRegisted(String email) {
 		String hql = "FROM User u where u.email = ?" ;
 		List<User> list = this.findEntityByHQL(hql, email);
 		return ValidateUtil.isvalidate(list);
+	}
+
+	public User validateLoginInfo(String email, String password) {
+		String  hql = "FROM User u where u.email = ? and u.password = ?";
+		List<User> users = this.findEntityByHQL(hql, email,password);
+		return ValidateUtil.isvalidate(users)? users.get(0):null;
 	}
 	
 	

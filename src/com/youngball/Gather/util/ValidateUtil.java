@@ -15,6 +15,11 @@ public class ValidateUtil {
 		return true;
 	}
 	
+	/**
+	 * 验证数据有效性
+	 * @param col
+	 * @return
+	 */
 	public static boolean isvalidate(Collection col){
 		if(col == null || col.isEmpty()){
 			return false;

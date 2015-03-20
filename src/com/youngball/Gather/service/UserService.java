@@ -11,6 +11,14 @@ public interface UserService extends BaseService<User> {
 	 */
 	public boolean isRegisted(String email);
 
+	/**
+	 * 验证登陆信息
+	 * @param email
+	 * @param md5
+	 * @return
+	 */
+	public User validateLoginInfo(String email, String password);
+
 	
 
 }

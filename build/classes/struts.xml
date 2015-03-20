@@ -19,7 +19,7 @@
 		
 		<!-- loginAction -->
 		<action name="LoginAction_*" class="loginAction" method="{1}">
-			<result name="loginPage">/index.jsp</result>
+			<result name="logPage">/index.jsp</result>
 			<result name="success">/index.jsp</result>
 			<result name="input">/index.jsp</result>
 		</action>

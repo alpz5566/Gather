@@ -17,9 +17,6 @@ public class RegAction extends BaseAction<User> {
 
 	private static final long serialVersionUID = 4618881342868567454L;
 
-	//模型对象
-	private User model = new User();
-	
 	//确认密码
 	private String confirmPassword;
 	
@@ -35,9 +32,6 @@ public class RegAction extends BaseAction<User> {
 	@Resource
 	private UserService userService;
 	
-	public User getModel() {
-		return model;
-	}
 	
 	/**
 	 * 到达注册页面
