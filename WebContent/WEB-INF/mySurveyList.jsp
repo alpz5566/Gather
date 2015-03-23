@@ -40,7 +40,7 @@
 					<td class="tdListHeader">清除调查</td>
 					<td class="tdListHeader">删除</td>
 				</tr>
-				<s:iterator value="MySurvey" >
+				<s:iterator value="mySurveys" >
 					<s:set var="sId" value="id" />
 					<tr>
 						<td><s:property value="id" /></td>

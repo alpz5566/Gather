@@ -16,6 +16,7 @@
 			</div>
 			<div class="divWhiteLine"></div>
 		</s:if>
+		
 		<s:form action="LoginAction_doLog" namespace="/" method="post">
 		<table>
 			<tr>

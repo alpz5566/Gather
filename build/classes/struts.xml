@@ -24,5 +24,10 @@
 			<result name="input">/index.jsp</result>
 		</action>
 		
+		<!-- surveyAction -->
+		<action name="SurveyAction_*" class="surveyAction" method="{1}">
+			<result name="addSurveyPage">/designSurvey.jsp</result>
+			<result name="mySurveysListPage">/mySurveyList.jsp</result>
+		</action>
 	</package>
 </struts>
