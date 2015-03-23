@@ -10,6 +10,24 @@
 	<constant name="struts.devMode" value="true"></constant>
 	
 	<package name="surveyParkPkg" namespace="/" extends="struts-default">
+	
+		<interceptors>
+			<!-- 注册自定义登陆拦截器 -->
+			<interceptor name="loginInterceptor" class="com.youngball.Gather.interceptor.LoginInterceptor"></interceptor>
+			<interceptor-stack name="surveyparkStack">
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 定义默认栈 -->
+		<default-interceptor-ref name="surveyparkStack"></default-interceptor-ref>
+	
+		<!-- 全局结果 -->
+		<global-results>
+				<result name="logPage">/index.jsp</result>
+		</global-results>
+		
 		<!-- regAcion -->
 		<action name="RegAction_*" class="regAction" method="{1}">
 			<result name="regPage">/reg.jsp</result>  
@@ -28,6 +46,7 @@
 		<action name="SurveyAction_*" class="surveyAction" method="{1}">
 			<result name="addSurveyPage">/designSurvey.jsp</result>
 			<result name="mySurveysListPage">/mySurveyList.jsp</result>
+			<result name="logPage">/index.jsp</result>
 		</action>
 	</package>
 </struts>

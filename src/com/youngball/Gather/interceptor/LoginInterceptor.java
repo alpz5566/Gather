@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.youngball.Gather.action.BaseAction;
 import com.youngball.Gather.action.LoginAction;
 import com.youngball.Gather.action.RegAction;
+import com.youngball.Gather.action.UserAware;
 import com.youngball.Gather.domain.User;
 
 
@@ -36,8 +37,12 @@ public class LoginInterceptor implements Interceptor  {
 			HttpSession s = ServletActionContext.getRequest().getSession();
 			User user = (User)s.getAttribute("user");
 			if(user == null){
-				return "toLogPage";
+				return "logPage";
 			}else{
+				//处理action的user注入问题
+				if(action instanceof UserAware){
+					((UserAware) action).setUser(user);
+				}
 				return invocation.invoke();
 			}
 		}
