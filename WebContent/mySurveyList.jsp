@@ -48,7 +48,7 @@
 						<td><s:date name="createTime" format="MM/dd/yy HH:mm" /></td>
 						<td>
 						</td>
-						<td>设计</td>
+						<td><s:a action="SurveyAction_designSurvey?sid=%{#sId}" namespace="/" cssClass="aList">设计</s:a></td>
 						<td>收集信息</td>
 						<td>分析</td>
 						<td>打开/关闭</td>

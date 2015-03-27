@@ -1,11 +1,9 @@
 package com.youngball.Gather.action;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -28,6 +26,16 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware{
 	@Resource()
 	private SurveyService surveyService;
 	
+	private Integer sid;
+	
+	public Integer getSid() {
+		return sid;
+	}
+
+	public void setSid(Integer sid) {
+		this.sid = sid;
+	}
+
 	private List<Survey> mySurveys;
 	
 	public List<Survey> getMySurvey() {
@@ -69,5 +77,33 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware{
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	/**
+	 * 设计调查
+	 * @return
+	 */
+	public String designSurvey(){
+		this.model = surveyService.getSurvey(sid);
+		return "designSurveyPage";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -31,14 +31,14 @@
 			<tr>
 				<td class="tdFormLabel" width="40%">E-mail:</td>
 				<td class="tdFormControl">
-					<input type="text" name="email" class="text" value="">
+					<input type="text" name="email" class="text" value="123@qq.com">
 					<font class="fonterror"><br><s:actionerror></s:actionerror></font>
 				</td>
 			</tr>
 			<tr>
 				<td class="tdFormLabel">密码:</td>
 				<td class="tdFormControl">
-					<input type="password" name="password" class="text" value="">
+					<input type="password" name="password" class="text" value="321">
 					<font class="fonterror"></font>
 				</td>
 			</tr>

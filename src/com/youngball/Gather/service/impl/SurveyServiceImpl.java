@@ -50,6 +50,10 @@ public class SurveyServiceImpl implements SurveyService{
 		String hql = "from Survey s where s.user.id = ?";
 		return surveyDao.findEntityByHQL(hql, user.getId());
 	}
+
+	public Survey getSurvey(Integer sid) {
+		return surveyDao.getEntity(sid);
+	}
 	
 }
 

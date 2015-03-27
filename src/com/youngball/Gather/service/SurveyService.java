@@ -21,4 +21,11 @@ public interface SurveyService {
 	 */
 	public List<Survey> findSurveysByUid(User user);
 
+	/**
+	 * 按照id查询调查
+	 * @param sid
+	 * @return
+	 */
+	public Survey getSurvey(Integer sid);
+
 }

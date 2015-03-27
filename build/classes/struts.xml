@@ -46,6 +46,7 @@
 		<action name="SurveyAction_*" class="surveyAction" method="{1}">
 			<result name="addSurveyPage">/designSurvey.jsp</result>
 			<result name="mySurveysListPage">/mySurveyList.jsp</result>
+			<result name="designSurveyPage">/designSurvey.jsp</result>
 			<result name="logPage">/index.jsp</result>
 		</action>
 	</package>
