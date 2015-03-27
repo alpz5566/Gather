@@ -82,15 +82,10 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware{
 	 * @return
 	 */
 	public String designSurvey(){
+		this.model = surveyService.getSurvey(sid);
 		return "designSurveyPage";
 	}
-	
-	/**
-	 * 在getmodel方法前执行
-	 */
-	public void prepareDesignSurvey(){
-		this.model = surveyService.getSurvey(sid);
-	}
+
 	
 	
 	

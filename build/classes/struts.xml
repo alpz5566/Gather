@@ -16,7 +16,9 @@
 			<interceptor name="loginInterceptor" class="com.youngball.Gather.interceptor.LoginInterceptor"></interceptor>
 			<interceptor-stack name="surveyparkStack">
 				<interceptor-ref name="loginInterceptor"></interceptor-ref>
-				<interceptor-ref name="paramsPrepareParamsStack"></interceptor-ref>
+				<interceptor-ref name="defaultStack">
+					<param name="modelDriven.refreshModelBeforeResult">true</param>
+				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
 		
