@@ -49,6 +49,12 @@
 			<result name="addSurveyPage">/designSurvey.jsp</result>
 			<result name="mySurveysListPage">/mySurveyList.jsp</result>
 			<result name="designSurveyPage">/designSurvey.jsp</result>
+			<result name="editSurveyPage">/editSurvey.jsp</result>
+			<result name="designSurveyAction" type="redirectAction">
+				<param name="namespace"></param>
+				<param name="actionName">SurveyAction_designSurvey</param>
+				<param name="sid">${id}</param>
+			</result>
 			<result name="logPage">/index.jsp</result>
 		</action>
 	</package>

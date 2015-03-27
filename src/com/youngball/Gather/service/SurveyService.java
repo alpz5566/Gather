@@ -30,4 +30,10 @@ public interface SurveyService {
 	
 	public Survey getSurveyWithChildren(Integer sid);
 
+	/**
+	 * 更新调查
+	 * @param model
+	 */
+	public void updateSurvey(Survey model);
+
 }

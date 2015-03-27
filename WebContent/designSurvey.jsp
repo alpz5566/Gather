@@ -34,7 +34,7 @@
 					</td>
 					<td class="tdSHeaderR">
 						增加Logo&nbsp;
-						编辑调查&nbsp;
+						<s:a action="SurveyAction_editSurvey?sid=%{#sId}" namespace="/">编辑调查</s:a>&nbsp;
 						增加页&nbsp;
 					</td>
 				</tr>
