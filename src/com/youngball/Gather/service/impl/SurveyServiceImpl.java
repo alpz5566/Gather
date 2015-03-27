@@ -51,8 +51,18 @@ public class SurveyServiceImpl implements SurveyService{
 		return surveyDao.findEntityByHQL(hql, user.getId());
 	}
 
-	public Survey getSurvey(Integer sid) {
+	
+	public Survey getSurveyWithChildren(Integer sid) {
 		return surveyDao.getEntity(sid);
+	}
+
+	public Survey getSurvey(Integer sid) {
+		Survey s = surveyDao.getEntity(sid);
+		//初始化问题集合,页面集合
+		for(Page p : s.getPages()){
+			p.getQuestions().size();
+		}
+		return s;
 	}
 	
 }

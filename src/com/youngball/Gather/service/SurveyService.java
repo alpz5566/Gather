@@ -27,5 +27,7 @@ public interface SurveyService {
 	 * @return
 	 */
 	public Survey getSurvey(Integer sid);
+	
+	public Survey getSurveyWithChildren(Integer sid);
 
 }
