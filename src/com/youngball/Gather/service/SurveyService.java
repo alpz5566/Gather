@@ -2,6 +2,7 @@ package com.youngball.Gather.service;
 
 import java.util.List;
 
+import com.youngball.Gather.domain.Page;
 import com.youngball.Gather.domain.Survey;
 import com.youngball.Gather.domain.User;
 
@@ -35,5 +36,11 @@ public interface SurveyService {
 	 * @param model
 	 */
 	public void updateSurvey(Survey model);
+
+	/**
+	 * 保存,更新页面
+	 * @param model
+	 */
+	public void saveOrUpdatePage(Page model);
 
 }

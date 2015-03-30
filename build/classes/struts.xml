@@ -28,6 +28,12 @@
 		<!-- 全局结果 -->
 		<global-results>
 				<result name="logPage">/index.jsp</result>
+				<!-- 设计调查 -->
+				<result name="designSurveyAction" type="redirectAction">
+					<param name="namespace"></param>
+					<param name="actionName">SurveyAction_designSurvey</param>
+					<param name="sid">${id}</param>
+				</result>
 		</global-results>
 		
 		<!-- regAcion -->
@@ -50,12 +56,12 @@
 			<result name="mySurveysListPage">/mySurveyList.jsp</result>
 			<result name="designSurveyPage">/designSurvey.jsp</result>
 			<result name="editSurveyPage">/editSurvey.jsp</result>
-			<result name="designSurveyAction" type="redirectAction">
-				<param name="namespace"></param>
-				<param name="actionName">SurveyAction_designSurvey</param>
-				<param name="sid">${id}</param>
-			</result>
 			<result name="logPage">/index.jsp</result>
+		</action>
+		
+	    <!-- PageAction -->
+		<action name="PageAction_*" class="pageAction" method="{1}">
+			<result name="addPagePage">/editPage.jsp</result>
 		</action>
 	</package>
 </struts>
