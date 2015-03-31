@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.youngball.Gather.domain">
+	<class name="Answer" table="answers">
+		<id name="id" column="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property name="answerIds" column="answerids" type="string" length="100" />
+		<property name="otherAnswer" column="otheranswer" type="string" length="100" />
+		<property name="uuid" column="uuid" type="string" length="50" />
+		<property name="answerTime" column="answertime" type="timestamp" />
+		<property name="questionId" column="questionid" type="integer" />
+		<property name="surveyId" column="surveyid" type="integer" />
+	</class>
+</hibernate-mapping>

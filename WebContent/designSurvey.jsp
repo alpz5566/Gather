@@ -58,7 +58,7 @@
 															<s:a action="PageAction_editPage?sid=%{#sId}&pid=%{#pId}" namespace="/">编辑页标题</s:a>&nbsp;
 															移动/复制页&nbsp;
 															<s:a action="QuestionAction_toSelectQuestionType?sid=%{#sId}&pid=%{#pId}" namespace="/">增加问题</s:a>&nbsp;
-															删除页&nbsp;
+															<s:a action="PageAction_deletePage?sid=%{#sId}&pid=%{#pId}">删除页</s:a>&nbsp;
 														</td>
 													</tr>
 												</table>
@@ -81,8 +81,8 @@
 																				<!-- 问题题干 -->
 																				<td class="tdQHeaderL"><s:property value="#q.title" /></td>
 																				<td class="tdQHeaderR">
-																					编辑问题&nbsp;
-																					删除问题&nbsp;
+																					<s:a action="QuestionAction_editQuestion?sid=%{#sId}&pid=%{#pId}&qid=%{#qId}">编辑问题</s:a>&nbsp;
+																					<s:a action="QuestionAction_deleteQuestion?sid=%{#sId}&pid=%{#pId}&qid=%{#qId}">删除问题</s:a>&nbsp;
 																				</td>
 																			</tr>
 																			<tr>

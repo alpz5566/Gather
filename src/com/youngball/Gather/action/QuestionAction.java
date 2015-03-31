@@ -79,6 +79,23 @@ public class QuestionAction extends BaseAction<Question>{
 		return "designSurveyAction";
 	}
 	
+	/**
+	 * 编辑问题
+	 * @return
+	 */
+	public String editQuestion(){
+		this.model = surveyService.getQuestion(qid);
+		return "" + model.getQuestionType();
+	}
+	
+	/**
+	 * 删除问题
+	 * @return
+	 */
+	public String deleteQuestion(){
+		surveyService.deleteQuestion(qid);
+		return "designSurveyAction";
+	}
 	
 
 }

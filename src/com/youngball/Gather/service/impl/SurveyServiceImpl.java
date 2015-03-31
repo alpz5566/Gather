@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.youngball.Gather.dao.BaseDao;
+import com.youngball.Gather.dao.impl.AnswerDaoImpl;
+import com.youngball.Gather.domain.Answer;
 import com.youngball.Gather.domain.Page;
 import com.youngball.Gather.domain.Question;
 import com.youngball.Gather.domain.Survey;
@@ -29,6 +31,9 @@ public class SurveyServiceImpl implements SurveyService{
 	
 	@Resource(name="questionDao")
 	private BaseDao<Question> questionDao;
+	
+	@Resource(name="answerDao")
+	private BaseDao<Answer> answerDao;
 	
 	/**
 	 * 新建调查
@@ -96,6 +101,38 @@ public class SurveyServiceImpl implements SurveyService{
 	 */
 	public void saveOrUpdateQuestion(Question model) {
 		questionDao.saveOrUpdateEntity(model);
+	}
+
+	/**
+	 * 删除问题 
+	 */
+	public void deleteQuestion(Integer qid) {
+		String hql = "delete from Answer a where a.questionId = ?";
+		answerDao.batchEntityByHQL(hql, qid);
+		hql = "delete from Question q where q.id = ?";
+		questionDao.batchEntityByHQL(hql, qid);
+	}
+
+	/**
+	 * 编辑问题
+	 */
+	public Question getQuestion(Integer qid) {
+		return questionDao.getEntity(qid);
+	}
+
+	/**
+	 * 删除页面
+	 */
+	public void deletePage(Integer pid) {
+		//先删除页面中问题的答案
+		String hql = "delete from Answer a where a.questionId in (select q.id from Question q where q.page.id = ?)";
+		answerDao.batchEntityByHQL(hql, pid);
+		//删问题
+		hql = "delete from Question q where q.page.id = ?";
+		answerDao.batchEntityByHQL(hql, pid);
+		//删页面
+		hql = "delete from Page p where p.id = ?";
+		answerDao.batchEntityByHQL(hql, pid);
 	}
 	
 }
