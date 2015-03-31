@@ -75,4 +75,10 @@ public interface SurveyService {
 	 */
 	public void deletePage(Integer pid);
 
+	/**
+	 * 删除调查
+	 * @param sid
+	 */
+	public void deleteSurvey(Integer sid);
+
 }

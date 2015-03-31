@@ -134,6 +134,25 @@ public class SurveyServiceImpl implements SurveyService{
 		hql = "delete from Page p where p.id = ?";
 		answerDao.batchEntityByHQL(hql, pid);
 	}
+
+	/**
+	 * 删除调查
+	 */
+	public void deleteSurvey(Integer sid) {
+		//delete answer
+		String hql = "delete from Answer a where a.surveyId = ?";
+		answerDao.batchEntityByHQL(hql, sid);
+		//delete question
+		//hql = "delete from Question q where q.page.survey.id = ?";   错误原因:hibernate,delte的时候不允许2级以上的的连接,但是查询可以
+		hql = "delete from Question q where q.page.id in (select p.id from Page p where p.survey.id = ?)"; 
+		answerDao.batchEntityByHQL(hql, sid);
+		//delete page
+		hql = "delete from Page p where p.survey.id = ?";
+		answerDao.batchEntityByHQL(hql, sid);
+		//delete survey
+		hql = "delete from Survey where id = ?";
+		answerDao.batchEntityByHQL(hql, sid);
+	}
 	
 }
 

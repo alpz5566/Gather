@@ -53,7 +53,7 @@
 						<td>分析</td>
 						<td>打开/关闭</td>
 						<td>清除调查</td>
-						<td>删除</td>
+						<td><s:a action="SurveyAction_deleteSurvey?sid=%{#sId}" namespace="/" cssClass="aList">删除</s:a></td>
 					</tr>
 				</s:iterator>
 			</table>

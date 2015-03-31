@@ -57,6 +57,10 @@
 				<param name="sid">${id}</param>
 			</result>
 			<result name="logPage">/index.jsp</result>
+			<result name="findMySurveysAction" type="redirectAction">
+				<param name="namespace"></param>
+				<param name="actionName">SurveyAction_mySurvey</param>
+			</result>
 		</action>
 		
 	    <!-- PageAction -->

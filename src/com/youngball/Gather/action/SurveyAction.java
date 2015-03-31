@@ -104,7 +104,10 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware{
 		return "designSurveyAction";
 	}
 	
-	
+	public String deleteSurvey(){
+		surveyService.deleteSurvey(sid);
+		return "findMySurveysAction";
+	}
 	
 	
 	
