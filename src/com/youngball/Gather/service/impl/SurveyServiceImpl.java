@@ -153,6 +153,23 @@ public class SurveyServiceImpl implements SurveyService{
 		hql = "delete from Survey where id = ?";
 		answerDao.batchEntityByHQL(hql, sid);
 	}
+
+	/**
+	 * 清除调查
+	 */
+	public void clearAnswers(Integer sid) {
+		String hql = "delete from Answer a where a.surveyId = ?";
+		answerDao.batchEntityByHQL(hql, sid);
+	}
+
+	/**
+	 * 改变状态
+	 */
+	public void changeStatus(Integer sid) {
+		Survey s = this.getSurvey(sid);
+		String hql = "update Survey s set s.closed = ? where s.id = ?";
+		answerDao.batchEntityByHQL(hql,!s.isClosed() ,sid);
+	}
 	
 }
 

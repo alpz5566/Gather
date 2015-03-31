@@ -47,12 +47,14 @@
 						<td><s:property value="title" /></td>
 						<td><s:date name="createTime" format="MM/dd/yy HH:mm" /></td>
 						<td>
+							<s:if test="closed">关闭</s:if>
+							<s:else>开放</s:else>
 						</td>
 						<td><s:a action="SurveyAction_designSurvey?sid=%{#sId}" namespace="/" cssClass="aList">设计</s:a></td>
 						<td>收集信息</td>
 						<td>分析</td>
-						<td>打开/关闭</td>
-						<td>清除调查</td>
+						<td><s:a action="SurveyAction_changeStatus?sid=%{#sId}" namespace="/" cssClass="aList">打开/关闭</s:a></td>
+						<td><s:a action="SurveyAction_clearAnswer?sid=%{#sId}" namespace="/" cssClass="aList">清除调查</s:a></td>
 						<td><s:a action="SurveyAction_deleteSurvey?sid=%{#sId}" namespace="/" cssClass="aList">删除</s:a></td>
 					</tr>
 				</s:iterator>

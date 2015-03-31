@@ -81,4 +81,16 @@ public interface SurveyService {
 	 */
 	public void deleteSurvey(Integer sid);
 
+	/**
+	 * 清除调查
+	 * @param sid
+	 */
+	public void clearAnswers(Integer sid);
+
+	/**
+	 * 改变状态
+	 * @param sid
+	 */
+	public void changeStatus(Integer sid);
+
 }
