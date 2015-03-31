@@ -23,7 +23,7 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware{
 	private User user;
 	
 	//注入SurveyService
-	@Resource()
+	@Resource
 	private SurveyService surveyService;
 	
 	private Integer sid;

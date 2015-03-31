@@ -15,7 +15,7 @@
 		<property name="createTime" column="createtime" type="timestamp" update="false" />
 		<!-- 映射从Survey到user之间多对一关联关系 -->
 		<many-to-one name="user" class="User" column="userid" />
-		
+
 		<!-- 映射从Survey到Page之间一对多关联关系  -->
 		<set name="pages" inverse="true" order-by="id">
 			<key column="surveyid" />

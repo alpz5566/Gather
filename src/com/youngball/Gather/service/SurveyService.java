@@ -3,6 +3,7 @@ package com.youngball.Gather.service;
 import java.util.List;
 
 import com.youngball.Gather.domain.Page;
+import com.youngball.Gather.domain.Question;
 import com.youngball.Gather.domain.Survey;
 import com.youngball.Gather.domain.User;
 
@@ -42,5 +43,17 @@ public interface SurveyService {
 	 * @param model
 	 */
 	public void saveOrUpdatePage(Page model);
+
+	/**
+	 * 编辑页面标题 
+	 * @return
+	 */
+	public Page getPage(Integer pid);
+
+	/**
+	 * 保存更新问题
+	 * @param model
+	 */
+	public void saveOrUpdateQuestion(Question model);
 
 }

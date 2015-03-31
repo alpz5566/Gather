@@ -21,6 +21,16 @@ public class PageAction extends BaseAction<Page>{
 	
 	private Integer sid;
 	
+	private Integer pid;
+	
+	public Integer getPid() {
+		return pid;
+	}
+
+	public void setPid(Integer pid) {
+		this.pid = pid;
+	}
+
 	public Integer getSid() {
 		return sid;
 	}
@@ -36,6 +46,10 @@ public class PageAction extends BaseAction<Page>{
 		return "addPagePage";
 	}
 	
+	/**
+	 * 保存/更新页面
+	 * @return
+	 */
 	public String saveOrUpdatePage(){
 		//设置页面调查关系
 		Survey s = new Survey();
@@ -43,6 +57,15 @@ public class PageAction extends BaseAction<Page>{
 		model.setSurvey(s);
 		surveyService.saveOrUpdatePage(model);
 		return "designSurveyAction";
+	}
+	
+	/**
+	 * 编辑页面标题 
+	 * @return
+	 */
+	public String editPage(){
+		this.model = surveyService.getPage(pid);
+		return "editPage";
 	}
 	
 }

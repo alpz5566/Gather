@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.youngball.Gather.dao.BaseDao;
 import com.youngball.Gather.domain.Page;
+import com.youngball.Gather.domain.Question;
 import com.youngball.Gather.domain.Survey;
 import com.youngball.Gather.domain.User;
 import com.youngball.Gather.service.SurveyService;
@@ -25,6 +26,9 @@ public class SurveyServiceImpl implements SurveyService{
 	
 	@Resource(name="pageDao")
 	private BaseDao<Page> pageDao;
+	
+	@Resource(name="questionDao")
+	private BaseDao<Question> questionDao;
 	
 	/**
 	 * 新建调查
@@ -77,6 +81,21 @@ public class SurveyServiceImpl implements SurveyService{
 	 */
 	public void saveOrUpdatePage(Page model) {
 		pageDao.saveOrUpdateEntity(model);
+	}
+
+	/**
+	 * 编辑页面标题 
+	 * @return
+	 */
+	public Page getPage(Integer pid) {
+		return pageDao.getEntity(pid);
+	}
+
+	/**
+	 * 保存更新问题
+	 */
+	public void saveOrUpdateQuestion(Question model) {
+		questionDao.saveOrUpdateEntity(model);
 	}
 	
 }
