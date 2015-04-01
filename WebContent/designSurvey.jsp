@@ -29,6 +29,9 @@
 				</tr>
 				<tr>
 					<td class="tdSHeaderL">
+					<s:if test="logoIsExists()">
+						<img  src="<s:url value='%{logoPath}' />" height="20px" width="50px">
+					</s:if>	
 						<!-- 调查标题 -->
 						<s:property value="title" />
 					</td>

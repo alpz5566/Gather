@@ -177,7 +177,9 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 				//可以使用这样的方法得到upload的真实路径,但是这种代码方式不优雅,解决:实现一个ServletContextAware的接口注入servletcontext对象
 				//ServletActionContext.getServletContext().getRealPath("/upload");
 			String dir = sc.getRealPath("/upload");
+			//按时间命名图片
 			long i = System.nanoTime();
+			//图片后缀名
 			String ext = logoPhotoFileName.substring(logoPhotoFileName.lastIndexOf("."));
 			File newFile = new File(dir, i + ext);
 			logoPhoto.renameTo(newFile);
@@ -186,6 +188,16 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 		}
 		return "designSurveyAction";
 	}
+	
+	public boolean logoIsExists(){
+		String path = model.getLogoPath();
+		if(ValidateUtil.isValid(path)){
+			String realPath = sc.getRealPath(path);
+			return new File(realPath).exists();
+		}
+		return false;
+	}
+	
 	
 	//注入ServletContext对象
 	public void setServletContext(ServletContext context) {
