@@ -33,7 +33,7 @@
 						<s:property value="title" />
 					</td>
 					<td class="tdSHeaderR">
-						增加Logo&nbsp;
+						<s:a action="SurveyAction_toAddLogoPage?sid=%{#sId}">增加Logo</s:a>&nbsp;
 						<s:a action="SurveyAction_editSurvey?sid=%{#sId}" namespace="/">编辑调查</s:a>&nbsp;
 						<s:a action="PageAction_toAddPage?sid=%{#sId}" namespace="/">增加页</s:a>&nbsp;
 					</td>

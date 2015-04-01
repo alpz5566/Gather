@@ -61,6 +61,7 @@
 				<param name="namespace"></param>
 				<param name="actionName">SurveyAction_mySurvey</param>
 			</result>
+			<result name="addLogoPage">/addLogo.jsp</result>
 		</action>
 		
 	    <!-- PageAction -->

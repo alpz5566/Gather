@@ -170,6 +170,14 @@ public class SurveyServiceImpl implements SurveyService{
 		String hql = "update Survey s set s.closed = ? where s.id = ?";
 		answerDao.batchEntityByHQL(hql,!s.isClosed() ,sid);
 	}
+
+	/**
+	 * 更新数据库logopath路径
+	 */
+	public void updateLogoPath(Integer sid, String path) {
+		String hql = "update Survey s set s.logoPath = ? where s.id = ?";
+		surveyDao.batchEntityByHQL(hql, path, sid);
+	}
 	
 }
 

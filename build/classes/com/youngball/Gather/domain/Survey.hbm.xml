@@ -12,9 +12,11 @@
 		<property name="nextText" column="nexttext" type="string" length="50" />
 		<property name="exitText" column="exittext" type="string" length="50"/>
 		<property name="doneText" column="donetext" type="string" length="50"/>
-		<property name="createTime" column="createtime" type="timestamp" update="false" />
 		<!-- update=false,阻止s.update()和s.saveOrUpdate,不能阻止hql更新 -->
+		<property name="createTime" column="createtime" type="timestamp" update="false" />
 		<property name="closed" column="closed"  type="boolean" update="false"/>
+		<!-- 上传文件路径 -->
+		<property name="logoPath" column="logopath"  type="string" length="200" update="false"/>
 		<!-- 映射从Survey到user之间多对一关联关系 -->
 		<many-to-one name="user" class="User" column="userid" />
 

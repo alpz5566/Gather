@@ -93,4 +93,11 @@ public interface SurveyService {
 	 */
 	public void changeStatus(Integer sid);
 
+	/**
+	 * 修改logoPath路径
+	 * @param sid
+	 * @param string
+	 */
+	public void updateLogoPath(Integer sid, String path);
+
 }

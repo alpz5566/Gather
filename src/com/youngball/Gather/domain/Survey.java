@@ -18,7 +18,15 @@ public class Survey {
 	private String doneText = "完成";
 	private Date createTime = new Date();
 	private boolean closed;
+	// upload/xxx.jpg 存储路径,相对路径
+	private String logoPath;
 	
+	public String getLogoPath() {
+		return logoPath;
+	}
+	public void setLogoPath(String logoPath) {
+		this.logoPath = logoPath;
+	}
 	public boolean isClosed() {
 		return closed;
 	}

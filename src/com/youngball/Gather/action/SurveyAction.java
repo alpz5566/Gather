@@ -1,19 +1,24 @@
 package com.youngball.Gather.action;
 
+import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.util.ServletContextAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.youngball.Gather.domain.Survey;
 import com.youngball.Gather.domain.User;
 import com.youngball.Gather.service.SurveyService;
+import com.youngball.Gather.util.ValidateUtil;
 
 @Controller
 @Scope("prototype")
-public class SurveyAction extends BaseAction<Survey> implements UserAware{
+public class SurveyAction extends BaseAction<Survey> implements UserAware,ServletContextAware{
 
 	private static final long serialVersionUID = -1416936634856203333L;
 	
@@ -28,6 +33,26 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware{
 	
 	private Integer sid;
 	
+	private File logoPhoto;
+	
+	private String logoPhotoFileName;
+	
+	public String getLogoPhotoFileName() {
+		return logoPhotoFileName;
+	}
+
+	public void setLogoPhotoFileName(String logoPhotoFileName) {
+		this.logoPhotoFileName = logoPhotoFileName;
+	}
+
+	public File getLogoPhoto() {
+		return logoPhoto;
+	}
+
+	public void setLogoPhoto(File logoPhoto) {
+		this.logoPhoto = logoPhoto;
+	}
+
 	public Integer getSid() {
 		return sid;
 	}
@@ -37,6 +62,9 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware{
 	}
 
 	private List<Survey> mySurveys;
+
+	//接受servletContext对象
+	private ServletContext sc;
 	
 	public List<Survey> getMySurvey() {
 		return mySurveys;
@@ -122,13 +150,47 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware{
 		return "findMySurveysAction";
 	}
 	
+	/**
+	 * 改变状态
+	 * @return
+	 */
 	public String changeStatus(){
 		surveyService.changeStatus(sid);
 		return "findMySurveysAction";
 	}
 	
+	/**
+	 * 增加到达logo页面
+	 * @return
+	 */
+	public String toAddLogoPage(){
+		return "addLogoPage";
+	}
 	
+	/**
+	 * logo图片上传
+	 * @return
+	 */
+	public String doAddLogo(){
+		if(ValidateUtil.isValid(logoPhotoFileName)){
+			//上传文件
+				//可以使用这样的方法得到upload的真实路径,但是这种代码方式不优雅,解决:实现一个ServletContextAware的接口注入servletcontext对象
+				//ServletActionContext.getServletContext().getRealPath("/upload");
+			String dir = sc.getRealPath("/upload");
+			long i = System.nanoTime();
+			String ext = logoPhotoFileName.substring(logoPhotoFileName.lastIndexOf("."));
+			File newFile = new File(dir, i + ext);
+			logoPhoto.renameTo(newFile);
+			//更新数据库路径信息
+			surveyService.updateLogoPath(sid,"/upload/" + i + ext);
+		}
+		return "designSurveyAction";
+	}
 	
+	//注入ServletContext对象
+	public void setServletContext(ServletContext context) {
+		this.sc = context;
+	} 
 	
 	
 	
