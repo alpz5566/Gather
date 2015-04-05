@@ -37,6 +37,17 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 	
 	private String logoPhotoFileName;
 	
+	//错误页面
+	private String inputPage;
+	
+	public String getInputPage() {
+		return inputPage;
+	}
+
+	public void setInputPage(String inputPage) {
+		this.inputPage = inputPage;
+	}
+
 	public String getLogoPhotoFileName() {
 		return logoPhotoFileName;
 	}
@@ -187,6 +198,11 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 			surveyService.updateLogoPath(sid,"/upload/" + i + ext);
 		}
 		return "designSurveyAction";
+	}
+	
+	//该方法在doAddLogo之前执行,文件上传拦截器
+	public void prepareDoAddLogo(){
+		inputPage = "/addLogo.jsp";
 	}
 	
 	public boolean logoIsExists(){

@@ -62,7 +62,7 @@
 				<param name="actionName">SurveyAction_mySurvey</param>
 			</result>
 			<result name="addLogoPage">/addLogo.jsp</result>
-			<result name="input">/addLogo.jsp</result>
+			<result name="input">${inputPage}</result>
 			<interceptor-ref name="surveyparkStack">
 				<!-- 限制文件 -->
 				<param name="fileUpload.MaximumSize">60000</param>
