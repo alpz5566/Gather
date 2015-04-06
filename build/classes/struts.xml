@@ -106,6 +106,12 @@
 		
 		<action name="MoveOrCopyPageAction_*" class="moveOrCopyPageAction" method="{1}">
 			<result name="moveOrCopyPageListPage">/moveOrCopyPageList.jsp</result>
+			<!-- 设计调查 -->
+			<result name="designSurveyAction" type="redirectAction">
+				<param name="namespace"></param>
+				<param name="actionName">SurveyAction_designSurvey</param>
+				<param name="sid">${sid}</param>
+			</result>
 		</action>
 		
 	</package>

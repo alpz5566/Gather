@@ -40,7 +40,7 @@
 							<s:if test="#pId != srcPid">
 								<s:form name="form%{#pId}" action="MoveOrCopyPageAction_doMoveOrCopyPage" method="post">
 									<s:hidden name="srcPid" />
-									<s:hidden name="targPid" value="%{#pId}" />
+									<s:hidden name="tarPid" value="%{#pId}" />
 									<!-- 当移动/复制完成后,需要重定向到目标调查的设计页面 -->
 									<s:hidden name="sid" value="%{#sId}" />
 									<s:radio list="#{0:'之前',1:'之后'}" listKey="key" listValue="value" name="pos"/>

@@ -14,6 +14,7 @@ import com.youngball.Gather.domain.Question;
 import com.youngball.Gather.domain.Survey;
 import com.youngball.Gather.domain.User;
 import com.youngball.Gather.service.SurveyService;
+import com.youngball.Gather.util.ValidateUtil;
 
 /**
  * serveyService
@@ -190,6 +191,95 @@ public class SurveyServiceImpl implements SurveyService{
 			s.getPages().size();
 		}
 		return list;
+	}
+
+	/**
+	 * 实现移动/复制
+	 */
+	public void moveOrCopyPage(Integer srcPid, Integer tarPid, int pos) {
+		Page srcPage = this.getPage(srcPid);
+		Survey srcSurvey = srcPage.getSurvey();
+		Page tarPage = this.getPage(tarPid);
+		Survey tarSurvey = tarPage.getSurvey();
+		
+		//比较源页面和目标页面
+		//移动
+		if(srcSurvey.getId().equals(tarSurvey.getId())){
+			setOrderno(srcPage,tarPage,pos);
+		}
+		//复制
+		else{
+			Page copy = null; 	//对src进行深度复制
+			setOrderno(copy,tarPage,pos);
+		}
+	}
+
+	/**
+	 * 设置页序
+	 * @param copy
+	 * @param tarPage
+	 * @param pos
+	 */
+	private void setOrderno(Page srcPage, Page tarPage, int pos) {
+		//之前/之后??
+		if(pos == 0){
+			if(isFirstPage(tarPage)){
+				srcPage.setOrderno(srcPage.getOrderno() - 0.01f);
+			}else {
+				Page prePage = getPrePage(tarPage);
+				srcPage.setOrderno((tarPage.getOrderno() + prePage.getOrderno()) / 2);
+			}
+		}else{
+			if(isLastPage(tarPage)){
+				srcPage.setOrderno(srcPage.getOrderno() + 0.01f);
+			}else {
+				Page nextPage = getNextPage(tarPage);
+				srcPage.setOrderno((tarPage.getOrderno() + nextPage.getOrderno()) / 2);
+			}
+		}
+	}
+
+	/**
+	 * 获取页面所在调查的后一页
+	 * @param tarPage
+	 * @return
+	 */
+	private Page getNextPage(Page tarPage) {
+		String hql = "from Page p where p.orderno > ? and p.survey.id = ? order by p.orderno asc";
+		return pageDao.findEntityByHQL(hql, tarPage.getOrderno(), tarPage.getSurvey().getId()).get(0);
+		
+	}
+
+	/**
+	 * 获取页面所在调查的前一页
+	 * @param tarPage
+	 * @return
+	 */
+	private Page getPrePage(Page tarPage) {
+		String hql = "from Page p where p.orderno < ? and p.survey.id = ? order by p.orderno desc";
+		return pageDao.findEntityByHQL(hql, tarPage.getOrderno(), tarPage.getSurvey().getId()).get(0);
+	}
+
+	/**
+	 * 判断页面是否是最后一页
+	 * @param srcPage
+	 * @return
+	 */
+	private boolean isLastPage(Page tarPage) {
+		String hql = "from Page p where p.orderno > ? and p.survey.id = ?";
+		List<Page> list = pageDao.findEntityByHQL(hql,tarPage.getOrderno(),tarPage.getSurvey().getId());
+		return !ValidateUtil.isvalidate(list);
+	}
+
+	/**
+	 * 判断页面是否是第一页
+	 * @param srcPage
+	 * @return
+	 */
+	private boolean isFirstPage(Page tarPage) {
+		String hql = "from Page p where p.orderno < ? and p.survey.id = ?";
+		List<Page> list = pageDao.findEntityByHQL(hql,tarPage.getOrderno(),tarPage.getSurvey().getId());
+		return !ValidateUtil.isvalidate(list);
 	}
 	
 }

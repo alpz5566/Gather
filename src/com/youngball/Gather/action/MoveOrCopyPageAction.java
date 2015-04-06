@@ -24,6 +24,10 @@ public class MoveOrCopyPageAction extends BaseAction<Page> implements UserAware{
 	
 	private List<Survey> surveys;
 	private Integer srcPid;
+	private Integer tarPid;
+	//位置,0之前,1之后 
+	private int pos;
+	private Integer sid;
 	
 	//接收user 登陆拦截器里面注入
 	private User user;
@@ -31,6 +35,30 @@ public class MoveOrCopyPageAction extends BaseAction<Page> implements UserAware{
 	@Resource
 	private SurveyService surveyService;
 	
+	public Integer getTarPid() {
+		return tarPid;
+	}
+
+	public void setTarPid(Integer tarPid) {
+		this.tarPid = tarPid;
+	}
+
+	public int getPos() {
+		return pos;
+	}
+
+	public void setPos(int pos) {
+		this.pos = pos;
+	}
+
+	public Integer getSid() {
+		return sid;
+	}
+
+	public void setSid(Integer sid) {
+		this.sid = sid;
+	}
+
 	public List<Survey> getSurveys() {
 		return surveys;
 	}
@@ -54,6 +82,15 @@ public class MoveOrCopyPageAction extends BaseAction<Page> implements UserAware{
 	public String toSelectTargetPage(){
 		this.surveys = surveyService.findSurveysWithPage(user);
 		return "moveOrCopyPageListPage";
+	}
+	
+	/**
+	 * 实现移动/复制
+	 * @return
+	 */
+	public String doMoveOrCopyPage(){
+		surveyService.moveOrCopyPage(srcPid,tarPid,pos);
+		return "designSurveyAction";
 	}
 
 	/**

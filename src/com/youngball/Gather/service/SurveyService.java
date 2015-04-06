@@ -107,4 +107,12 @@ public interface SurveyService {
 	 */
 	public List<Survey> findSurveysWithPage(User user);
 
+	/**
+	 * 实现移动/复制
+	 * @param srcPid
+	 * @param tarPid
+	 * @param pos
+	 */
+	public void moveOrCopyPage(Integer srcPid, Integer tarPid, int pos);
+
 }
