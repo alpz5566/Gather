@@ -104,5 +104,9 @@
 			</result>
 		</action>
 		
+		<action name="MoveOrCopyPageAction_*" class="moveOrCopyPageAction" method="{1}">
+			<result name="moveOrCopyPageListPage">/moveOrCopyPageList.jsp</result>
+		</action>
+		
 	</package>
 </struts>

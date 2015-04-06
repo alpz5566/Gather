@@ -178,6 +178,19 @@ public class SurveyServiceImpl implements SurveyService{
 		String hql = "update Survey s set s.logoPath = ? where s.id = ?";
 		surveyDao.batchEntityByHQL(hql, path, sid);
 	}
+
+	/**
+	 * 查询调查,携带page集合
+	 */
+	public List<Survey> findSurveysWithPage(User user) {
+		String hql = "from Survey s where s.user.id = ?";
+		List<Survey> list = surveyDao.findEntityByHQL(hql, user.getId());
+		//强行初始化页面集合.防止懒加载
+		for(Survey s : list){
+			s.getPages().size();
+		}
+		return list;
+	}
 	
 }
 

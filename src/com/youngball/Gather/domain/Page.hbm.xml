@@ -10,6 +10,11 @@
 		<property name="title" column="title" type="string" length="200" />
 		<property name="description" column="description" type="string" length="200" />
 		
+		<!-- colum属性和子元素互斥,只能用其一 -->
+		<property name="orderno"  type="float">
+			<!-- 能够指定数据的字段类型 -->
+			<column name="orderno" sql-type="decimal(10,5)"></column>
+		</property>
 		<!-- 映射从Page到Survey之间多对一关联关系 -->
 		<many-to-one name="survey" class="Survey" column="surveyid" />
 		

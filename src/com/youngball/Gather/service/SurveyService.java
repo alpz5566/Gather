@@ -100,4 +100,11 @@ public interface SurveyService {
 	 */
 	public void updateLogoPath(Integer sid, String path);
 
+	/**
+	 * 查询调查,携带page集合
+	 * @param user
+	 * @return
+	 */
+	public List<Survey> findSurveysWithPage(User user);
+
 }

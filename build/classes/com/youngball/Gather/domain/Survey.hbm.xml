@@ -21,7 +21,7 @@
 		<many-to-one name="user" class="User" column="userid" />
 
 		<!-- 映射从Survey到Page之间一对多关联关系  -->
-		<set name="pages" inverse="true" order-by="id">
+		<set name="pages" inverse="true" order-by="orderno">
 			<key column="surveyid" />
 			<one-to-many class="Page"/>
 		</set>

@@ -214,7 +214,6 @@ public class SurveyAction extends BaseAction<Survey> implements UserAware,Servle
 		return false;
 	}
 	
-	
 	//注入ServletContext对象
 	public void setServletContext(ServletContext context) {
 		this.sc = context;

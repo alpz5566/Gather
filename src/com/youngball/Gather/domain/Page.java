@@ -12,7 +12,15 @@ public class Page {
 	private Integer id;
 	private String title = "未命名";
 	private String description;
+	//页序
+	private float orderno;
 	
+	public float getOrderno() {
+		return orderno;
+	}
+	public void setOrderno(float orderno) {
+		this.orderno = orderno;
+	}
 	//调查
 	private Survey survey;
 	//问题集合
@@ -33,8 +41,12 @@ public class Page {
 	public Integer getId() {
 		return id;
 	}
+	//默认orderno和id一致
 	public void setId(Integer id) {
 		this.id = id;
+		if(id != null){
+			this.orderno = id;
+		}
 	}
 	public String getTitle() {
 		return title;
