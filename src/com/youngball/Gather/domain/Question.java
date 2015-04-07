@@ -22,7 +22,7 @@ public class Question implements Serializable{
 
 	private int otherStyle;
 	private String otherSelectOptions;
-	private String[] otherSelectOptionsArr;
+	private String[] otherSelectOptionsArr; 
 
 	//矩阵行标题集
 	private String matrixRowTitles;

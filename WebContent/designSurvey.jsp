@@ -108,7 +108,7 @@
 																							<!--  下拉列表 -->
 																							<s:elseif test="#q.otherStyle == 2">
 																								<select>
-																									<s:iterator value="#q.otherSelectOptionArr" >
+																									<s:iterator value="#q.otherSelectOptionsArr" >
 																										<option><s:property /></option>
 																									</s:iterator>
 																								</select>
