@@ -1,5 +1,6 @@
 package com.youngball.Gather.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +10,8 @@ import java.util.Set;
  * @author lpz
  *
  */
-public class Survey {
+public class Survey implements Serializable{
+	private static final long serialVersionUID = -43473181862037969L;
 	private Integer id;
 	private String title = "未命名";
 	private String preText = "上一步";

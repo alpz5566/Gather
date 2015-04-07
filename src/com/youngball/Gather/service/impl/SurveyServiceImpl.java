@@ -14,6 +14,7 @@ import com.youngball.Gather.domain.Question;
 import com.youngball.Gather.domain.Survey;
 import com.youngball.Gather.domain.User;
 import com.youngball.Gather.service.SurveyService;
+import com.youngball.Gather.util.DataUtil;
 import com.youngball.Gather.util.ValidateUtil;
 
 /**
@@ -209,7 +210,16 @@ public class SurveyServiceImpl implements SurveyService{
 		}
 		//复制
 		else{
-			Page copy = null; 	//对src进行深度复制
+			//对原页面进行深度复制
+			srcPage.getQuestions().size();
+			Page copy = (Page) DataUtil.deeplyCopy(srcPage);
+			//设置新的关联关系
+			copy.setSurvey(tarSurvey);
+			//分别保存新的页面和问题
+			pageDao.saveEntity(copy);
+			for(Question q : copy.getQuestions()){
+				questionDao.saveEntity(q);
+			}
 			setOrderno(copy,tarPage,pos);
 		}
 	}

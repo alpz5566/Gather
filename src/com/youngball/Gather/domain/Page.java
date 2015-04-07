@@ -1,5 +1,6 @@
 package com.youngball.Gather.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,7 +9,10 @@ import java.util.Set;
  * @author lpz
  *
  */
-public class Page {
+public class Page implements Serializable{
+	
+	private static final long serialVersionUID = 5976455485399129071L;
+	
 	private Integer id;
 	private String title = "未命名";
 	private String description;
@@ -21,8 +25,8 @@ public class Page {
 	public void setOrderno(float orderno) {
 		this.orderno = orderno;
 	}
-	//调查
-	private Survey survey;
+	//调查 transient虚拟机不再串行化这个对象
+	private transient Survey survey;
 	//问题集合
 	private Set<Question> questions = new HashSet<Question>(); 
 	

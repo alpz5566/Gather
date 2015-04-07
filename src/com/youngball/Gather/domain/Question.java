@@ -1,12 +1,14 @@
 package com.youngball.Gather.domain;
 
+import java.io.Serializable;
+
 /**
  * 问题实体
  * @author lpz
  *
  */
-public class Question {
-	
+public class Question implements Serializable{
+	private static final long serialVersionUID = 2333625411756778441L;
 	private Integer id;
 	private int questionType; 
 	private String title;
