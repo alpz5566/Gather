@@ -308,6 +308,7 @@ public class SurveyServiceImpl implements SurveyService{
 		//因为是一个页面集合所以会出现懒加载,应初始化
 		Page page = pageDao.findEntityByHQL(hql, sid).get(0);
 		page.getQuestions().size();
+		page.getSurvey().getTitle();
 		return page;
 	}
 	

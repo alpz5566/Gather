@@ -23,6 +23,22 @@ public class Survey implements Serializable{
 	// upload/xxx.jpg 存储路径,相对路径
 	private String logoPath;
 	
+	//最大最小页序
+	private float maxOrderno;
+	private float minOrderno;
+	
+	public float getMaxOrderno() {
+		return maxOrderno;
+	}
+	public void setMaxOrderno(float maxOrderno) {
+		this.maxOrderno = maxOrderno;
+	}
+	public float getMinOrderno() {
+		return minOrderno;
+	}
+	public void setMinOrderno(float minOrderno) {
+		this.minOrderno = minOrderno;
+	}
 	public String getLogoPath() {
 		return logoPath;
 	}

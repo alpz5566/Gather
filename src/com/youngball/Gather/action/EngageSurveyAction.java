@@ -2,10 +2,12 @@ package com.youngball.Gather.action;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 
+import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.util.ServletContextAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -22,7 +24,7 @@ import com.youngball.Gather.util.ValidateUtil;
  */
 @Controller
 @Scope("prototype")
-public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,ServletContextAware{
+public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,ServletContextAware,SessionAware{
 
 	private static final long serialVersionUID = -4668343023359766668L;
 
@@ -58,6 +60,9 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 
 	@Resource
 	private SurveyService surveyService;
+
+	//接收sessionMap
+	private Map<String, Object> sessionMap;
 	
 	public void setUser(User user) {
 		this.user = user;
@@ -97,7 +102,15 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 	 */
 	public String entry(){
 		this.currPage = surveyService.getFirstPage(sid);
+		//current_survey.minOrderno
+		
+		sessionMap.put("current_survey", currPage.getSurvey());
 		return "engageSurveyPage";
+	}
+
+	//注入sessionMap
+	public void setSession(Map<String, Object> session) {
+		this.sessionMap = session;
 	}
 
 }

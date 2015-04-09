@@ -17,6 +17,11 @@
 		<property name="closed" column="closed"  type="boolean" update="false"/>
 		<!-- 上传文件路径 -->
 		<property name="logoPath" column="logopath"  type="string" length="200" update="false"/>
+		
+		<!-- 通过公式查询最大最小页序 -->
+		<property name="maxOrderno" formula="(select max(p.orderno) from pages p where p.surveyid = id)" />
+		<property name="minOrderno" formula="(select min(p.orderno) from pages p where p.surveyid = id)" />
+		
 		<!-- 映射从Survey到user之间多对一关联关系 -->
 		<many-to-one name="user" class="User" column="userid" />
 
