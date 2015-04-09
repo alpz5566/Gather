@@ -68,7 +68,7 @@
 												<!-- 其它选项类型是下拉列表 -->
 												<s:elseif test="#q.otherStyle == 2">
 													<select name='q<s:property value="#qId"/>other'>
-														<s:iterator var="option" value="#q.otherSelectOptionArr" status="optst">
+														<s:iterator var="option" value="#q.otherSelectOptionsArr" status="optst">
 															<option value='<s:property value="#optst.index" />'
 																	<s:property value="setTag('q' + #qId+'other',#optst.index,'selected')" />
 																	><s:property /></option>

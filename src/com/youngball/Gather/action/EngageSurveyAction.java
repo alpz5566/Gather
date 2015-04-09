@@ -96,7 +96,8 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 	 * @return
 	 */
 	public String entry(){
-		return "";
+		this.currPage = surveyService.getFirstPage(sid);
+		return "engageSurveyPage";
 	}
 
 }

@@ -299,6 +299,17 @@ public class SurveyServiceImpl implements SurveyService{
 		String hql = "from Survey s where s.closed = ?";
 		return surveyDao.findEntityByHQL(hql, false);
 	}
+
+	/**
+	 * 找到第一个页面
+	 */
+	public Page getFirstPage(Integer sid) {
+		String hql = "from Page p where p.survey.id = ? order by p.orderno asc";
+		//因为是一个页面集合所以会出现懒加载,应初始化
+		Page page = pageDao.findEntityByHQL(hql, sid).get(0);
+		page.getQuestions().size();
+		return page;
+	}
 	
 }
 

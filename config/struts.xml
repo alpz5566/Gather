@@ -118,6 +118,7 @@
 		<!-- EngageSurveyAction -->
 		<action name="EngageSurveyAction_*" class="engageSurveyAction" method="{1}">
 			<result name="engageSurveyListPage">/engageSurveyList.jsp</result>
+			<result name="engageSurveyPage">/engageSurvey.jsp</result>
 		</action>
 		
 	</package>

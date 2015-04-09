@@ -121,4 +121,11 @@ public interface SurveyService {
 	 */
 	public List<Survey> findAllAvailableSurveys();
 
+	/**
+	 * 找到第一个页面
+	 * @param sid
+	 * @return
+	 */
+	public Page getFirstPage(Integer sid);
+
 }
