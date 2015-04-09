@@ -32,7 +32,7 @@
 							<td width='<s:property value="100/#cells" />%'>
 								<s:if test="#idx < surveys.size">
 									<s:a action="EngageSurveyAction_entry?sid=%{surveys[#idx].id}" cssClass="aList" namespace="/">
-										<img src='<s:property value="getImageUrl(surveys[#idx].logoPhotoPath)" />' 
+										<img src='<s:property value="getImageUrl(surveys[#idx].logoPath)" />' 
 											 alt="<s:property value='surveys[#idx].title' />"
 											 height="80px" 
 											 width="80px">

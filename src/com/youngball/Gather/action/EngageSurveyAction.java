@@ -1,5 +1,6 @@
 package com.youngball.Gather.action;
 
+import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import com.youngball.Gather.domain.Survey;
 import com.youngball.Gather.domain.User;
 import com.youngball.Gather.service.SurveyService;
+import com.youngball.Gather.util.ValidateUtil;
 
 /**
  * 参与调查
@@ -55,5 +57,19 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 		return "engageSurveyListPage";
 	}
 	
+	/**
+	 * 得到图片路径
+	 * @param logoPath
+	 * @return
+	 */
+	public String getImageUrl(String logoPath){
+		if(ValidateUtil.isValid(logoPath)){
+			String realPath = sc.getRealPath(logoPath);
+			if(new File(realPath).exists()){
+				return sc.getContextPath() + logoPath;
+			}
+		}
+		return sc.getContextPath() + "/question.bmp";
+	}
 
 }
