@@ -115,4 +115,10 @@ public interface SurveyService {
 	 */
 	public void moveOrCopyPage(Integer srcPid, Integer tarPid, int pos);
 
+	/**
+	 * 可参与的调查
+	 * @return
+	 */
+	public List<Survey> findAllAvailableSurveys();
+
 }

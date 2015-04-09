@@ -3,7 +3,7 @@ package com.youngball.Gather.action;
 import com.youngball.Gather.domain.User;
 
 /**
- * 用户关注接口
+ * 用户关注接口 源自SessionAware
  * @author lpz
  *
  */

@@ -291,6 +291,14 @@ public class SurveyServiceImpl implements SurveyService{
 		List<Page> list = pageDao.findEntityByHQL(hql,tarPage.getOrderno(),tarPage.getSurvey().getId());
 		return !ValidateUtil.isvalidate(list);
 	}
+
+	/**
+	 * 可参与的调查
+	 */
+	public List<Survey> findAllAvailableSurveys() {
+		String hql = "from Survey s where s.closed = ?";
+		return surveyDao.findEntityByHQL(hql, false);
+	}
 	
 }
 

@@ -104,6 +104,7 @@
 			</result>
 		</action>
 		
+		<!-- MoveOrCopyPageAction -->
 		<action name="MoveOrCopyPageAction_*" class="moveOrCopyPageAction" method="{1}">
 			<result name="moveOrCopyPageListPage">/moveOrCopyPageList.jsp</result>
 			<!-- 设计调查 -->
@@ -112,6 +113,11 @@
 				<param name="actionName">SurveyAction_designSurvey</param>
 				<param name="sid">${sid}</param>
 			</result>
+		</action>
+		
+		<!-- EngageSurveyAction -->
+		<action name="EngageSurveyAction_*" class="engageSurveyAction" method="{1}">
+			<result name="engageSurveyListPage">/engageSurveyList.jsp</result>
 		</action>
 		
 	</package>
