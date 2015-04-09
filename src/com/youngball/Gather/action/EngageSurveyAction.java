@@ -10,6 +10,7 @@ import org.apache.struts2.util.ServletContextAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.youngball.Gather.domain.Page;
 import com.youngball.Gather.domain.Survey;
 import com.youngball.Gather.domain.User;
 import com.youngball.Gather.service.SurveyService;
@@ -28,7 +29,25 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 	private User user;
 	private ServletContext sc;
 	private List<Survey> surveys;
+	private Integer sid;
+	private Page currPage;
 	
+	public Integer getSid() {
+		return sid;
+	}
+
+	public void setSid(Integer sid) {
+		this.sid = sid;
+	}
+
+	public Page getCurrPage() {
+		return currPage;
+	}
+
+	public void setCurrPage(Page currPage) {
+		this.currPage = currPage;
+	}
+
 	public List<Survey> getSurveys() {
 		return surveys;
 	}
@@ -70,6 +89,14 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 			}
 		}
 		return sc.getContextPath() + "/question.bmp";
+	}
+	
+	/**
+	 * 参与调查的入口方法
+	 * @return
+	 */
+	public String entry(){
+		return "";
 	}
 
 }
