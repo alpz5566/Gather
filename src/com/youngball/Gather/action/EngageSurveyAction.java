@@ -1,16 +1,23 @@
 package com.youngball.Gather.action;
 
 import java.io.File;
+import java.security.Policy.Parameters;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 
+import org.apache.commons.collections.map.HashedMap;
+import org.apache.struts2.interceptor.ClearSessionInterceptor;
+import org.apache.struts2.interceptor.ParameterAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.util.ServletContextAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
+import sun.nio.cs.Surrogate;
 
 import com.youngball.Gather.domain.Page;
 import com.youngball.Gather.domain.Survey;
@@ -24,16 +31,29 @@ import com.youngball.Gather.util.ValidateUtil;
  */
 @Controller
 @Scope("prototype")
-public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,ServletContextAware,SessionAware{
+public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,ServletContextAware,SessionAware,ParameterAware{
 
 	private static final long serialVersionUID = -4668343023359766668L;
 
+	private static final String CURRENT_SURVEY = "current_survey";
+	
+	private static final String ALL_PARAMS_MAP = "all_params_map";
+	
 	private User user;
 	private ServletContext sc;
 	private List<Survey> surveys;
 	private Integer sid;
 	private Page currPage;
-	
+	private Integer currPid;
+
+	public Integer getCurrPid() {
+		return currPid;
+	}
+
+	public void setCurrPid(Integer currPid) {
+		this.currPid = currPid;
+	}
+
 	public Integer getSid() {
 		return sid;
 	}
@@ -64,6 +84,14 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 	//接收sessionMap
 	private Map<String, Object> sessionMap;
 	
+	//接受提交参数map
+	private Map<String, String[]> paramsMap;
+	
+	//注入sessionMap
+	public void setSession(Map<String, Object> session) {
+		this.sessionMap = session;
+
+	}
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -103,14 +131,88 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 	public String entry(){
 		this.currPage = surveyService.getFirstPage(sid);
 		//current_survey.minOrderno
-		
-		sessionMap.put("current_survey", currPage.getSurvey());
+		//存放Survey-->session
+		sessionMap.put(CURRENT_SURVEY, currPage.getSurvey());
+		//初始化所有参数的map
+		sessionMap.put(ALL_PARAMS_MAP, new HashMap<Integer, Map<String, String[]>>());
 		return "engageSurveyPage";
 	}
 
-	//注入sessionMap
-	public void setSession(Map<String, Object> session) {
-		this.sessionMap = session;
+	/**
+	 * 处理参与调查
+	 * @return
+	 */
+	public String doEngageSurvey(){
+		String submitName = getSubmitName();
+		//上一步
+		if(submitName.endsWith("pre")){
+			mergeParamsIntoSession();
+			this.currPage = surveyService.getPrePage(currPid);
+			return "engageSurveyPage";
+		}
+		//下一步
+		else if(submitName.endsWith("next")){
+			mergeParamsIntoSession();
+			this.currPage = surveyService.getNextPage(currPid);
+			return "engageSurveyPage";
+		}
+		//完成
+		else if(submitName.endsWith("done")){
+			mergeParamsIntoSession();
+			//答案入库
+			return "engageSurveyAction";
+		}
+		//退出
+		else if(submitName.endsWith("exit")){
+			clearSessionData();
+			return "engageSurveyAction";
+		}
+		return null;
 	}
 
+	/**
+	 * 清除session数据,释放资源
+	 */
+	private void clearSessionData() {
+		sessionMap.remove(CURRENT_SURVEY);
+		sessionMap.remove(ALL_PARAMS_MAP);
+	}
+
+	/**
+	 * 将参数合并到session中
+	 */
+	private void mergeParamsIntoSession() {
+		Map<Integer, Map<String, String[]>> allParamsMap = getAllParamsMapInSession();
+		allParamsMap.put(currPid, paramsMap);
+	}
+
+	/**
+	 * 获得session中所有参数
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	private Map<Integer, Map<String, String[]>> getAllParamsMapInSession() {
+		return (Map<Integer, Map<String, String[]>> ) sessionMap.get(ALL_PARAMS_MAP);
+	}
+
+	/**
+	 * 得到提交按钮的名称
+	 * @return
+	 */
+	private String getSubmitName() {
+		for(String name : paramsMap.keySet()){
+			if(name.startsWith("submit"));{
+				return name;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 注入所有才参数 struts中有很多接口 基于接口ParameterAware
+	 */
+	public void setParameters(Map<String, String[]> Parameters) {
+		this.paramsMap = Parameters ; 
+	}
+	
 }

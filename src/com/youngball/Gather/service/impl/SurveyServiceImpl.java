@@ -311,6 +311,27 @@ public class SurveyServiceImpl implements SurveyService{
 		page.getSurvey().getTitle();
 		return page;
 	}
+
+	/**
+	 * 查询指定页面的上一页
+	 */
+	public Page getPrePage(Integer currPid) {
+		Page p = this.getPage(currPid);
+		p = this.getPrePage(p);
+		p.getQuestions().size();
+		return p;
+		
+	} 
+
+	/**
+	 * 查询指定页面的下一页
+	 */
+	public Page getNextPage(Integer currPid) {
+		Page p = this.getPage(currPid);
+		p = this.getNextPage(p);
+		p.getQuestions().size();
+		return p;
+	}
 	
 }
 

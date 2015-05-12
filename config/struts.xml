@@ -119,6 +119,10 @@
 		<action name="EngageSurveyAction_*" class="engageSurveyAction" method="{1}">
 			<result name="engageSurveyListPage">/engageSurveyList.jsp</result>
 			<result name="engageSurveyPage">/engageSurvey.jsp</result>
+			<result name="engageSurveyAction" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">EngageSurveyAction_findAllAvailableSurveys</param>
+			</result>
 		</action>
 		
 	</package>

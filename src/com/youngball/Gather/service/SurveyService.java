@@ -128,4 +128,18 @@ public interface SurveyService {
 	 */
 	public Page getFirstPage(Integer sid);
 
+	/**
+	 * 查询指定页面的上一页
+	 * @param currPid
+	 * @return
+	 */
+	public Page getPrePage(Integer currPid);
+	
+	/**
+	 * 查询指定页面的下一页
+	 * @param currPid
+	 * @return
+	 */
+	public Page getNextPage(Integer currPid);
+
 }
