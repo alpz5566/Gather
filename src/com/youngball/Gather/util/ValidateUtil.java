@@ -26,4 +26,16 @@ public class ValidateUtil {
 		}
 		return true;
 	}
+	
+	/**
+	 * 验证数组的有效性
+	 * @param arr
+	 * @return
+	 */
+	public static boolean isValid(Object[] arr) {
+		if(arr == null || arr.length == 0){
+			return false;
+		}
+		return true ;
+	}
 }

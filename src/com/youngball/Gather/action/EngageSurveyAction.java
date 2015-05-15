@@ -2,9 +2,11 @@ package com.youngball.Gather.action;
 
 import java.io.File;
 import java.security.Policy.Parameters;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -19,10 +21,12 @@ import org.springframework.stereotype.Controller;
 
 import sun.nio.cs.Surrogate;
 
+import com.youngball.Gather.domain.Answer;
 import com.youngball.Gather.domain.Page;
 import com.youngball.Gather.domain.Survey;
 import com.youngball.Gather.domain.User;
 import com.youngball.Gather.service.SurveyService;
+import com.youngball.Gather.util.StringUtil;
 import com.youngball.Gather.util.ValidateUtil;
 
 /**
@@ -160,6 +164,7 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 		else if(submitName.endsWith("done")){
 			mergeParamsIntoSession();
 			//答案入库
+			processAnswers();
 			return "engageSurveyAction";
 		}
 		//退出
@@ -168,6 +173,52 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 			return "engageSurveyAction";
 		}
 		return null;
+	}
+
+	/**
+	 * 处理答案
+	 */
+	private void processAnswers() {
+		List<Answer> answers = new ArrayList<Answer>();
+		Answer a = null;
+		String key = null;
+		String[] value = null;
+ 		for(Map<String, String[]> map : getAllParamsMapInSession().values()){
+			for(Entry<String, String[]> entry : map.entrySet()){
+				key = entry.getKey();
+				value = entry.getValue();
+				//挑选所有q开头的参数
+				if(key.startsWith("q")){
+					//不含other且不含_
+					if(!key.contains("other") && key.contains("_")){
+						a = new Answer();
+						//数组变换为String
+						a.setAnswerIds(StringUtil.arr2Str(value)); //answerids
+						a.setQuestionId(getQid(key)); //questionid
+						a.setSurveyId(getCurrentSurvey().getId()); //surveyid
+						answers.add(a);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * 取得调查id
+	 * @return
+	 */
+	private Survey getCurrentSurvey() {
+		return (Survey) sessionMap.get(CURRENT_SURVEY);
+	}
+
+	/**
+	 * 提取问题id
+	 * q12->12
+	 * @param key
+	 * @return
+	 */
+	private Integer getQid(String key) {
+		return Integer.parseInt(key.substring(1));
 	}
 
 	/**
