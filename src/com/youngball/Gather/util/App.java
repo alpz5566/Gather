@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.UUID;
 
 import com.youngball.Gather.domain.Page;
 
@@ -21,5 +22,9 @@ public class App {
 		Page copy = (Page) ois.readObject();
 		ois.close();
 		bais.close();*/
+		//String key = "q12_332";
+		//System.out.println(Integer.parseInt(key.substring(1,key.indexOf("_"))));
+		String uuid = UUID.randomUUID().toString();
+		System.out.println(uuid);
 	}
 }

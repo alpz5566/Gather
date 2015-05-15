@@ -1,6 +1,8 @@
 package com.youngball.Gather.service.impl;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -331,6 +333,19 @@ public class SurveyServiceImpl implements SurveyService{
 		p = this.getNextPage(p);
 		p.getQuestions().size();
 		return p;
+	}
+
+	/**
+	 * 保存答案
+	 */
+	public void saveAnswers(List<Answer> list) {
+		String uuid = UUID.randomUUID().toString();
+		Date date = new Date();
+		for(Answer a : list){
+			a.setUuid(uuid);
+			a.setAnswerTime(date);
+			answerDao.saveEntity(a);
+		}
 	}
 	
 }

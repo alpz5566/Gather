@@ -2,6 +2,7 @@ package com.youngball.Gather.service;
 
 import java.util.List;
 
+import com.youngball.Gather.domain.Answer;
 import com.youngball.Gather.domain.Page;
 import com.youngball.Gather.domain.Question;
 import com.youngball.Gather.domain.Survey;
@@ -141,5 +142,11 @@ public interface SurveyService {
 	 * @return
 	 */
 	public Page getNextPage(Integer currPid);
+
+	/**
+	 * 保存答案
+	 * @param processAnswers
+	 */
+	public void saveAnswers(List<Answer> processAnswers);
 
 }

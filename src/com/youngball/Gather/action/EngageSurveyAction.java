@@ -164,7 +164,7 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 		else if(submitName.endsWith("done")){
 			mergeParamsIntoSession();
 			//答案入库
-			processAnswers();
+			surveyService.saveAnswers(processAnswers()) ;
 			return "engageSurveyAction";
 		}
 		//退出
@@ -178,7 +178,9 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 	/**
 	 * 处理答案
 	 */
-	private void processAnswers() {
+	private List<Answer> processAnswers() {
+		//矩阵单选按钮
+		Map<Integer,String> matrixRadioMap = new HashMap<Integer,String>();
 		List<Answer> answers = new ArrayList<Answer>();
 		Answer a = null;
 		String key = null;
@@ -196,11 +198,61 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 						a.setAnswerIds(StringUtil.arr2Str(value)); //answerids
 						a.setQuestionId(getQid(key)); //questionid
 						a.setSurveyId(getCurrentSurvey().getId()); //surveyid
+						
+						//处理其他项
+						String[] otherValue = map.get(key + "other");
+						a.setOtherAnswer(StringUtil.arr2Str(otherValue));//otheranswer
 						answers.add(a);
+					}
+					//处理矩阵单选按钮
+					else if(key.contains("_")){
+						//提取问题id
+						Integer qid = getMatrixRadioQid(key);
+						String oldValue = matrixRadioMap.get(qid);
+						if(oldValue == null){
+							matrixRadioMap.put(qid, StringUtil.arr2Str(value));
+						}
+						else{
+							matrixRadioMap.put(qid, oldValue + "," + StringUtil.arr2Str(value));
+						}
 					}
 				}
 			}
 		}
+ 		//单独处理矩阵单选按钮
+ 		processMatrixARadioAnswers(answers,matrixRadioMap);
+ 		return answers;
+	}
+
+	/**
+	 * 单独处理矩阵单选按钮
+	 * @param answers
+	 * @param matrixRadioMap
+	 */
+	private void processMatrixARadioAnswers(List<Answer> answers,
+			Map<Integer, String> matrixRadioMap) {
+		Integer key = null;
+		String value = null;
+		Answer a = null;
+		for(Entry<Integer, String> entry : matrixRadioMap.entrySet()){
+			key = entry.getKey();
+			value = entry.getValue();
+			a = new Answer();
+			a.setAnswerIds(value);
+			a.setQuestionId(key);
+			a.setSurveyId(getCurrentSurvey().getId());
+			answers.add(a);
+			//批量入库
+		}
+	}
+
+	/**
+	 * 得到矩阵式问题的qid    
+	 * q12_0->12
+	 * @return
+	 */
+	private Integer getMatrixRadioQid(String key) {
+		return Integer.parseInt(key.substring(1,key.indexOf("_"))) ;
 	}
 
 	/**
