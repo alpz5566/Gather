@@ -191,7 +191,7 @@ public class EngageSurveyAction extends BaseAction<Survey> implements UserAware,
 				value = entry.getValue();
 				//挑选所有q开头的参数
 				if(key.startsWith("q")){
-					//不含other且不含_
+					//不含other且不含"_"
 					if(!key.contains("other") && key.contains("_")){
 						a = new Answer();
 						//数组变换为String
